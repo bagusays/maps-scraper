@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  consumer:
+    image: consumer
+    environment: 
+      RABBITMQ_HOST: "rabbitmq"
+    networks: 
+      - scraper
+    volumes:
+      - ./photos:/app/photos
+    restart: on-failure
+    shm_size: '3GB'
+
+networks:
+  scraper:
+    external:
+      name: scraper
