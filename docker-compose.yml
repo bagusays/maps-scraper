@@ -3,15 +3,10 @@ services:
   consumer:
     image: consumer
     environment: 
-      RABBITMQ_HOST: "rabbitmq"
+      RABBITMQ_HOST: "${RABBITMQ_HOST}"
     networks: 
       - scraper
-    volumes:
-      - ./photos:/app/photos
+    # volumes:
+    #   - ./photos:/app/photos
     restart: on-failure
     shm_size: '3GB'
-
-networks:
-  scraper:
-    external:
-      name: scraper
